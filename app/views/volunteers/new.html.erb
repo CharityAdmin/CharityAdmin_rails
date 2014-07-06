@@ -1,7 +1,24 @@
 <h1>build me bro!</h1>
 
+<% if @volunteer.errors.any? %>
+    <div id="error_explanation">
+        <h2><%= pluralize(@volunteer.errors.count, "error") %> prohibited
+            this volunteer from being saved:</h2>
+        <ul>
+            <% @volunteer.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+            <% end %>
+        </ul>
+    </div>
+<% end %>
 
 <%= form_for :volunteer, url: volunteers_path do |f| %>
+
+    <p>
+        <%= f.label :email %><br>
+        <%= f.text_field :email %>
+    </p>
+
     <p>
         <%= f.label :first_name %><br>
         <%= f.text_field :first_name %>
@@ -10,11 +27,6 @@
     <p>
         <%= f.label :last_name %><br>
         <%= f.text_field :last_name %>
-    </p>
-
-    <p>
-        <%= f.label :email %><br>
-        <%= f.text_field :email %>
     </p>
 
     <p>
